@@ -1,0 +1,418 @@
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --highlight-color: #D6F32F; /* Vibrant Lime Yellow from the design */
+    --font-heading: 'Handjet', cursive;
+    --font-body: 'Roboto Mono', monospace;
+    --transition-speed: 0.8s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+::selection {
+    background-color: var(--highlight-color);
+    color: #000;
+}
+
+/* Typography */
+h1, h2, h3, .logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: clamp(4rem, 8vw, 8rem);
+    line-height: 0.9;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+p {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    margin-bottom: 1rem;
+    color: #ccc;
+    max-width: 600px;
+}
+
+.highlight-text {
+    color: var(--highlight-color);
+}
+
+.relative-container {
+    position: relative;
+    display: inline-block;
+}
+
+.circle-badge {
+    position: absolute;
+    top: -20px;
+    right: -50px;
+    font-family: var(--font-body);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: #1a1a1a;
+    background-color: var(--highlight-color);
+    padding: 0.2rem 1.2rem;
+    border-radius: 50px;
+    transform: rotate(12deg);
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-transform: lowercase;
+    box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    animation: float-badge 4s ease-in-out infinite;
+    line-height: 1.2;
+}
+
+@keyframes float-badge {
+    0%, 100% { transform: translateY(0px) rotate(12deg); }
+    50% { transform: translateY(-8px) rotate(16deg); }
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    mix-blend-mode: difference;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 70px;
+    width: auto;
+}
+
+.btn-primary {
+    background-color: transparent;
+    color: var(--highlight-color);
+    border: 1px solid var(--highlight-color);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--highlight-color);
+    color: #000;
+}
+
+/* Layout */
+.fullscreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    position: relative;
+}
+
+.showcase-section {
+    min-height: 100vh;
+    padding: 8rem 4rem;
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.split {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.split.reverse {
+    flex-direction: row-reverse;
+}
+
+.text-content {
+    flex: 1;
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.image-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: transform 0.5s ease;
+}
+
+.image-content img:hover {
+    transform: translateY(-10px);
+}
+
+/* Hero Section */
+#hero {
+    text-align: center;
+}
+
+#hero .subtitle {
+    margin: 0 auto;
+    font-size: 1.5rem;
+    color: var(--highlight-color);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.5;
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 50px;
+    background-color: var(--text-color);
+    animation: scrollLine 2s infinite;
+}
+
+@keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    50.1% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Problem Section */
+.problem-steps {
+    margin-bottom: 4rem;
+}
+
+.step {
+    color: #444;
+    transition: color 0.5s ease;
+}
+
+.step.active {
+    color: var(--text-color);
+}
+
+.step.final.active {
+    color: var(--highlight-color);
+}
+
+/* Features List */
+.features-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.feature-item {
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-left: 2px solid #333;
+    transition: border-color 0.3s ease;
+}
+
+.feature-item:hover {
+    border-color: var(--highlight-color);
+}
+
+.image-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.image-grid img {
+    width: 100%;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.image-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Pitch Section */
+.pitch-section {
+    background-color: #111;
+}
+
+.pitch-card {
+    background: #1a1a1a;
+    padding: 4rem;
+    border-radius: 20px;
+    border: 1px solid #333;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.pitch-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--highlight-color);
+}
+
+.pitch-card .salutation {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--highlight-color);
+    margin-bottom: 2rem;
+}
+
+.pitch-card p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+}
+
+.pitch-card .signature {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-top: 3rem;
+    color: var(--highlight-color);
+}
+
+.pitch-story {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.pitch-story p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ddd;
+    border-left: 2px solid #333;
+    padding-left: 1.5rem;
+}
+
+.pitch-story p strong {
+    color: var(--highlight-color);
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.quote-callout {
+    background: rgba(214, 243, 47, 0.05);
+    border: 1px solid rgba(214, 243, 47, 0.2);
+    padding: 2rem;
+    border-radius: 15px;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-top: 3rem;
+    position: relative;
+}
+
+.quote-callout::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    color: var(--highlight-color);
+    opacity: 0.3;
+}
+
+/* Animations (Hidden by default, shown by JS Observer) */
+.fade-in {
+    opacity: 0.2;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.fade-in.is-visible {
+    opacity: 1;
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay {
+    transition-delay: 0.5s;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .split, .split.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    p { margin: 0 auto 1.5rem; }
+    
+    .features-list { align-items: center; }
+    .feature-item { border-left: none; border-bottom: 1px solid #333; padding-bottom: 1rem; }
+    
+    nav { padding: 1.5rem 2rem; }
+    .fullscreen, .showcase-section { padding: 6rem 2rem; }
+}
+
+@media (max-width: 600px) {
+    .image-grid { grid-template-columns: 1fr; }
+    .pitch-card { padding: 2rem; }
+}
